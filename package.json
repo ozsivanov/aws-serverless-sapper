@@ -10,13 +10,13 @@
     "accountId": "YOUR_ACCOUNT_ID"
   },
   "scripts": {
-    "postinstall": "cd lambda && npm install",
+    "postinstall": "cd api && npm install",
     "config": "node ./scripts/configure.js",
     "package": "aws cloudformation package --template ./cloudformation.yaml --s3-bucket $npm_package_config_s3BucketName --output-template packaged-sam.yaml --region $npm_package_config_region",
     "deploy": "aws cloudformation deploy --template-file packaged-sam.yaml --stack-name $npm_package_config_cloudFormationStackName --capabilities CAPABILITY_IAM --region $npm_package_config_region",
     "package-deploy": "npm run package && npm run deploy",
     "dev": "sapper dev",
-    "build": "rm -rf ./lambda/__sapper__ && sapper build && mv ./__sapper__ ./lambda/"
+    "build": "rm -rf ./api/__sapper__ && sapper build && mv ./__sapper__ ./api/"
   },
   "dependencies": {
     "polka": "^0.5.2"
